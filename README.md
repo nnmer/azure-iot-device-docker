@@ -37,9 +37,13 @@ When you will be prompted to provide verification code do next:
 - add a verification certificate to your certificate settings at Azure DPS. The verification certificate is saved at *./scripts/certs/verification-code.cert.pem*
 
 
-### Step 3.
+### Step 3a.
 
-Go to Azure DPS > Manage enrollments and create your group enrollment, select your certificate from the list
+Go to "Azure DPS > Manage enrollments" and create your group enrollment, select your certificate from the list
+
+### Step 3b.
+
+Add a proper "IoTHub at Azure DPS > Linked IoT hubs"
 
 ### Step 4.
 
