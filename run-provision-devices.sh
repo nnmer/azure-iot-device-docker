@@ -74,8 +74,6 @@ EOL
 
 EOL
     done
-
-    docker-compose up
 }
 
 

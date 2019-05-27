@@ -45,7 +45,8 @@ Go to Azure DPS > Manage enrollments and create your group enrollment, select yo
 
 run:
 ```
-run-devices.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
+run-provision-devices.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
+docker-composer up
 ```
 
 at this point you should have desired number of containers (devices) running and sending telemetry to your Azure IoT Hub
