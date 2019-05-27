@@ -48,7 +48,7 @@ EOL
     for (( idx=1; idx<=$deviceDesiredNumber; idx++ ))
     do
         cd ./scripts
-        ./certGen.sh create_device_certificate dev-${idx}
+        sh ./certGen.sh create_device_certificate dev-${idx}
 
         mv ./certs/new-device.cert.pem ./certs/devices/dev-${idx}.cert.pem
         mv ./certs/new-device.cert.pfx ./certs/devices/dev-${idx}.cert.pfx
