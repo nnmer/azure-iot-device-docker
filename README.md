@@ -19,6 +19,13 @@ You need to have installed on your system:
 
 ## Run Steps 
 
+**Note**
+If you are using **not** a global azure then change the file run-provision-devices.sh at string
+```
+- PROVISIONING_HOST=global.azure-devices-provisioning.net
+```
+to correct global.azure-devices-provisioning.**XXX**
+
 ### Step 1.
 
 Create Azure IoT Hub and DPS services, link them together. [Azure Docs for reference](https://docs.microsoft.com/en-us/azure/iot-dps/quick-setup-auto-provision)
