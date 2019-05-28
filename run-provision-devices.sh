@@ -23,16 +23,16 @@ function start()
     # Filesystem prepare
     #
 
-    rm -fr ./scripts/certs/devices
-    mkdir -p ./scripts/certs/devices
+    rm -fr ./scripts/build/certs/devices
+    mkdir -p ./scripts/build/certs/devices
 
-    rm -f ./scripts/index.txt
-    touch ./scripts/index.txt
+    rm -f ./scripts/build/index.txt
+    touch ./scripts/build/index.txt
 
-    rm -f ./scripts/certs/new-device*
-    rm -f ./scripts/csr/new-device*
-    rm -f ./scripts/newcerts/*
-    rm -f ./scripts/private/new-device*
+    rm -f ./scripts/build/certs/new-device*
+    rm -f ./scripts/build/csr/new-device*
+    rm -f ./scripts/build/newcerts/*
+    rm -f ./scripts/build/private/new-device*
 
     #
     # Prepare docker-compose.yml file
@@ -50,12 +50,12 @@ EOL
         cd ./scripts
         sh ./certGen.sh create_device_certificate dev-${idx}
 
-        mv ./certs/new-device.cert.pem ./certs/devices/dev-${idx}.cert.pem
-        mv ./certs/new-device.cert.pfx ./certs/devices/dev-${idx}.cert.pfx
-        mv ./private/new-device.key.pem ./certs/devices/dev-${idx}.key.pem
-        mv ./csr/new-device.csr.pem ./certs/devices/dev-${idx}.csr.pem
+        mv ./build/certs/new-device.cert.pem ./build/certs/devices/dev-${idx}.cert.pem
+        mv ./build/certs/new-device.cert.pfx ./build/certs/devices/dev-${idx}.cert.pfx
+        mv ./build/private/new-device.key.pem ./build/certs/devices/dev-${idx}.key.pem
+        mv ./build/csr/new-device.csr.pem ./build/certs/devices/dev-${idx}.csr.pem
 
-        cat ./certs/devices/dev-${idx}.cert.pem ./certs/azure-iot-test-only.intermediate.cert.pem ./certs/azure-iot-test-only.root.ca.cert.pem > ./certs/devices/dev-${idx}-full-chain.cert.pem
+        cat ./build/certs/devices/dev-${idx}.cert.pem ./build/certs/azure-iot-test-only.intermediate.cert.pem ./build/certs/azure-iot-test-only.root.ca.cert.pem > ./build/certs/devices/dev-${idx}-full-chain.cert.pem
 
         cd ../
         cat >> ./docker-compose.yml << EOL
@@ -63,8 +63,8 @@ EOL
     image: node:8.12.0-jessie
     volumes:
       - ./src:/home/node/app
-      - ./scripts/certs/devices/dev-${idx}.key.pem:/home/node/device-key-private.pem
-      - ./scripts/certs/devices/dev-${idx}-full-chain.cert.pem:/home/node/device-key-public.pem
+      - ./scripts/build/certs/devices/dev-${idx}.key.pem:/home/node/device-key-private.pem
+      - ./scripts/build/certs/devices/dev-${idx}-full-chain.cert.pem:/home/node/device-key-public.pem
     working_dir: /home/node/app
     command:  'npm start'
     environment:

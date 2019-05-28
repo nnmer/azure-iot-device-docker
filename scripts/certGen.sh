@@ -10,8 +10,10 @@
 # These certs are intended only to help demonstrate and prototype CA certs.
 ###############################################################################
 
-root_ca_dir="."
-home_dir="."
+home_dir=$(pwd)/build
+mkdir -p ${home_dir}
+cd ${home_dir}
+root_ca_dir=${home_dir}
 algorithm="genrsa"
 COUNTRY="US"
 STATE="WA"
@@ -21,9 +23,9 @@ root_ca_password="1234"
 key_bits_length="4096"
 days_till_expire=30
 ca_chain_prefix="azure-iot-test-only.chain.ca"
-intermediate_ca_dir="."
-openssl_root_config_file="./openssl_root_ca.cnf"
-openssl_intermediate_config_file="./openssl_device_intermediate_ca.cnf"
+intermediate_ca_dir=${home_dir}
+openssl_root_config_file="../openssl_root_ca.cnf"
+openssl_intermediate_config_file="../openssl_device_intermediate_ca.cnf"
 intermediate_ca_password="1234"
 root_ca_prefix="azure-iot-test-only.root.ca"
 intermediate_ca_prefix="azure-iot-test-only.intermediate"
@@ -316,7 +318,7 @@ function initial_cert_generation()
 ###############################################################################
 function generate_verification_certificate()
 {
-    if [$# -ne 1]; then
+    if [ $# -ne 1 ]; then
         echo "Usage: <subjectName>"
         exit 1
     fi
@@ -352,7 +354,7 @@ function generate_device_certificate()
 function generate_edge_device_certificate()
 {
     local device_prefix="new-edge-device"
-    if [$# -ne 1]; then
+    if [ $# -ne 1 ]; then
         echo "Usage: <subjectName>"
         exit 1
     fi
