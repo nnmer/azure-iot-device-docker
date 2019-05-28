@@ -49,9 +49,9 @@ registration.register()
     if (err) {
       console.error('Could not connect: ' + err.message);
     } else {
-      console.log('Client connected');
+      console.log('Client connected. Sending messages each 5s');
 
-      var randValue = 1000;      
+      var randValue = 5000;      
       // while (1) {
         
         var interval = setInterval( function(){
