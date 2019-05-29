@@ -66,7 +66,7 @@ EOL
       - ./scripts/build/certs/devices/dev-${idx}.key.pem:/home/node/device-key-private.pem
       - ./scripts/build/certs/devices/dev-${idx}-full-chain.cert.pem:/home/node/device-key-public.pem
     working_dir: /home/node/app
-    command:  'npm start'
+    command:  'npm run start-leaf-device-dps'
     environment:
       - PROVISIONING_HOST=global.azure-devices-provisioning.net
       - ID_SCOPE=${dpsIdScope}
@@ -81,7 +81,7 @@ EOL
 
 
 if [ $# -ne 2 ]; then
-    echo "Usage: run-devices.sh XXX YYY"
+    echo "Usage: run-leaf-device-dps.sh XXX YYY"
     echo "       XXX # number of desired devices"
     echo "       YYY # your DPS service Id Scope value"
     exit 1

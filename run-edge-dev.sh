@@ -119,7 +119,7 @@ EOL
 
 
 if [ $# -ne 3 ]; then
-    echo "Usage: run-devices.sh WWW XXX YYY ZZZ"
+    echo "Usage: run-edge-dev.sh WWW XXX YYY ZZZ"
     echo "       WWW # IoT Hub name where devices would be aassigned to"
     echo "       XXX # number of desired devices"
     echo "       YYY # edge device name"

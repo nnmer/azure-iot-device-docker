@@ -1,4 +1,8 @@
-The purpose of this repository is to have an easy running sample of simulated devices packaged into docker containers with authorization via X.509 certificate and group enrollment into Azure IoT Hub.
+The purpose of this repository is to have an easy running sample of simulated devices packaged into docker containers.
+
+2 cases:
+- with authorization via X.509 certificate and group enrollment into Azure IoT Hub
+- a device connected to IoTHub via IoT Edge
 
 **Note: this is only for a demo and tests purposes, not for production.**
 
@@ -17,10 +21,10 @@ You need to have installed on your system:
 - docker-ce 
 - nodejs runtime
 
-## Run Steps 
+## Leaf device -> IoT Hub register with DPS and X.509
 
 **Note**
-If you are using **not** a global azure then change the file run-provision-devices.sh at string
+If you are using **not** a global azure then change the file run-leaf-device-dps.sh at string
 ```
 - PROVISIONING_HOST=global.azure-devices-provisioning.net
 ```
@@ -37,11 +41,11 @@ In root folder of the repo run:
 bash run-init.sh
 ```
 
-This will generate X.509 certificate and verification certificate. 
+This will generate X.509 root certificate and verification certificate. 
 When you will be prompted to provide verification code do next:
-- go to *Azure DPS > Certificates* and add generated certificate, which is saved at *./scripts/certs/azure-iot-test-only.root.ca.cert.pem* .
+- go to *Azure DPS > Certificates* and add generated certificate, which is saved at *./scripts/build/certs/azure-iot-test-only.root.ca.cert.pem* .
 - generate verification code for the certificate and provide it to the script
-- add a verification certificate to your certificate settings at Azure DPS. The verification certificate is saved at *./scripts/certs/verification-code.cert.pem*
+- add a verification certificate to your certificate settings at Azure DPS. The verification certificate is saved at *./scripts/build/certs/verification-code.cert.pem*
 
 
 ### Step 3a.
@@ -56,7 +60,7 @@ Add a proper "IoTHub at Azure DPS > Linked IoT hubs"
 
 run:
 ```
-run-provision-devices.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
+run-leaf-device-dps.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
 docker-composer up
 ```
 
@@ -75,13 +79,24 @@ Precondition:
 
 ### Step 1
 
+In root folder of the repo run:
+```
+bash run-init.sh
+```
+
+This will generate X.509 root certificate and verification certificate. 
+When you will be prompted to provide verification code write any info (verification certificate will not be used in this case)
+
+
+### Step 2
+
 create CA cert for Edge device
 
 ```
 sh run-edge-dev.sh <IoTHub-Name> <Number-Of-Leaf-Devices> <IoTEdge-Name>
 ```
 
-### Step 2
+### Step 3
 
 ```
 docker-compose up

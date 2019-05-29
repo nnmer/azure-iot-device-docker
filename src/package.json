@@ -6,7 +6,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
+    "start-leaf-device-dps": "node start-leaf-device-dps.js",
     "start-iotedge-downstream-device": "node start-iotedge-downstream-device.js",
     "start-dev": "nodemon index.js"
   },
