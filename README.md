@@ -61,3 +61,30 @@ docker-composer up
 ```
 
 at this point you should have desired number of containers (devices) running and sending telemetry to your Azure IoT Hub
+
+
+
+
+
+## Leaf device -> IoT Edge -> IoT Hub
+
+Precondition:
+- have azure-cli installed
+- azure iot extension: '''az extension add --name azure-cli-iot-ext'''
+- have IoT Hub created
+
+### Step 1
+
+create CA cert for Edge device
+
+```
+sh run-edge-dev.sh <IoTHub-Name> <Number-Of-Leaf-Devices> <IoTEdge-Name>
+```
+
+### Step 2
+
+```
+docker-compose up
+```
+
+Be patiant, it may take a while while edge device finish startup communication with IoT Hub

@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
+    "start-iotedge-downstream-device": "node start-iotedge-downstream-device.js",
     "start-dev": "nodemon index.js"
   },
   "dependencies": {
