@@ -74,8 +74,9 @@ at this point you should have desired number of containers (devices) running and
 
 Precondition:
 - have azure-cli installed
-- azure iot extension: '''az extension add --name azure-cli-iot-ext'''
+- azure iot extension: **az extension add --name azure-cli-iot-ext**
 - have IoT Hub created
+- run **az login** if didn't run it yet
 
 ### Step 1
 
