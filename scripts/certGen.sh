@@ -377,13 +377,13 @@ generate_edge_device_certificate()
                                        "v3_intermediate_ca" "Edge Device"
 }
 
-if [ "${1}" == "create_root_and_intermediate" ]; then
+if [ "${1}" = "create_root_and_intermediate" ]; then
     initial_cert_generation
-elif [ "${1}" == "create_verification_certificate" ]; then
+elif [ "${1}" = "create_verification_certificate" ]; then
     generate_verification_certificate "${2}"
-elif [ "${1}" == "create_device_certificate" ]; then
+elif [ "${1}" = "create_device_certificate" ]; then
     generate_device_certificate "${2}"
-elif [ "${1}" == "create_edge_device_certificate" ]; then
+elif [ "${1}" = "create_edge_device_certificate" ]; then
     generate_edge_device_certificate "${2}"
 else
     echo "Usage: create_root_and_intermediate                   # Creates a new root and intermediate certificates"
