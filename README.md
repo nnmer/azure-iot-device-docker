@@ -21,6 +21,13 @@ You need to have installed on your system:
 - docker-ce 
 - nodejs runtime
 
+## Notes
+
+**for Ubuntu users:**
+
+When you will run **docker-compose up** and it will fail with error **"Version in ./docker-compose.yml is unsupported"** the reason and solution may be [here](https://github.com/10up/wp-local-docker/issues/58#issuecomment-476786006)
+
+
 ## Leaf device -> IoT Hub register with DPS and X.509
 
 **Note**
