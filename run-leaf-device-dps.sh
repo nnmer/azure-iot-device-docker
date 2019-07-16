@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function checkExecStatus(){
+checkExecStatus(){
     if [ $? -ne 0 ]; then
         echo ERROR, see the log.
         read Press any key to continue
@@ -8,7 +8,7 @@ function checkExecStatus(){
     fi
 }
 
-function start()
+start()
 {
     #
     # Install node dependencies

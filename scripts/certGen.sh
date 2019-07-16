@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Copyright (c) Microsoft. All rights reserved.
 ## Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
@@ -30,7 +32,7 @@ intermediate_ca_password="1234"
 root_ca_prefix="azure-iot-test-only.root.ca"
 intermediate_ca_prefix="azure-iot-test-only.intermediate"
 
-function makeCNsubject()
+makeCNsubject()
 {
     local result="/CN=${1}"
     case $OSTYPE in
@@ -39,7 +41,7 @@ function makeCNsubject()
     echo "$result"
 }
 
-function warn_certs_not_for_production()
+warn_certs_not_for_production()
 {
     tput smso
     tput setaf 3
@@ -50,7 +52,7 @@ function warn_certs_not_for_production()
     tput sgr0
 }
 
-function generate_root_ca()
+generate_root_ca()
 {
     local common_name="Azure IoT Hub CA Cert Test Only"
     local password_cmd=" -aes256 -passout pass:${root_ca_password} "
@@ -101,7 +103,7 @@ function generate_root_ca()
 ###############################################################################
 # Generate Intermediate CA Cert
 ###############################################################################
-function generate_intermediate_ca()
+generate_intermediate_ca()
 {
     local common_name="Azure IoT Hub Intermediate Cert Test Only"
 
@@ -181,7 +183,7 @@ function generate_intermediate_ca()
 # Generate a Certificate for a device using specific openssl extension and
 # signed with either the root or intermediate cert.
 ###############################################################################
-function generate_device_certificate_common()
+generate_device_certificate_common()
 {
     local common_name="${1}"
     local device_prefix="${2}"
@@ -254,7 +256,7 @@ function generate_device_certificate_common()
 # Generate a certificate for a leaf device
 # signed with either the root or intermediate cert.
 ###############################################################################
-function generate_leaf_certificate()
+generate_leaf_certificate()
 {
     local common_name="${1}"
     local device_prefix="${2}"
@@ -272,7 +274,7 @@ function generate_leaf_certificate()
 #  Creates required directories and removes left over cert files.
 #  Run prior to creating Root CA; after that these files need to persist.
 ###############################################################################
-function prepare_filesystem()
+prepare_filesystem()
 {
     if [ ! -f ${openssl_root_config_file} ]; then
         echo "Missing file ${openssl_root_config_file}"
@@ -306,7 +308,7 @@ function prepare_filesystem()
 ###############################################################################
 # Generates a root and intermediate certificate for CA certs.
 ###############################################################################
-function initial_cert_generation()
+initial_cert_generation()
 {
     prepare_filesystem
     generate_root_ca
@@ -316,7 +318,7 @@ function initial_cert_generation()
 ###############################################################################
 # Generates a certificate for verification, chained directly to the root.
 ###############################################################################
-function generate_verification_certificate()
+generate_verification_certificate()
 {
     if [ $# -ne 1 ]; then
         echo "Usage: <subjectName>"
@@ -333,7 +335,7 @@ function generate_verification_certificate()
 ###############################################################################
 # Generates a certificate for a device, chained to the intermediate.
 ###############################################################################
-function generate_device_certificate()
+generate_device_certificate()
 {
     if [ $# -ne 1 ]; then
         echo "Usage: <subjectName>"
@@ -351,7 +353,7 @@ function generate_device_certificate()
 ###############################################################################
 # Generates a certificate for a Edge device, chained to the intermediate.
 ###############################################################################
-function generate_edge_device_certificate()
+generate_edge_device_certificate()
 {
     local device_prefix="new-edge-device"
     if [ $# -ne 1 ]; then
