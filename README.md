@@ -25,7 +25,8 @@ You need to have installed on your system:
 
 **for Ubuntu users:**
 
-When you will run **docker-compose up** and it will fail with error **"Version in ./docker-compose.yml is unsupported"** the reason and solution may be [here](https://github.com/10up/wp-local-docker/issues/58#issuecomment-476786006)
+- When you will run **docker-compose up** and it will fail with error **"Version in ./docker-compose.yml is unsupported"** the reason and solution may be [here](https://github.com/10up/wp-local-docker/issues/58#issuecomment-476786006)
+- you may need to execute commands with ```bash XXXXX.sh``` not ```sh XXXXX.sh```, as in ubuntu `sh` [is a dash interpretator](https://en.wikipedia.org/wiki/Almquist_shell#dash:_Ubuntu,_Debian_and_POSIX_compliance_of_Linux_distributions)
 
 
 ## Leaf device -> IoT Hub register with DPS and X.509
