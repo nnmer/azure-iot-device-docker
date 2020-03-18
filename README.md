@@ -68,7 +68,7 @@ Add a proper "IoTHub at Azure DPS > Linked IoT hubs"
 
 run:
 ```
-run-leaf-device-dps.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
+bash run-leaf-device-dps.sh {Number_Of_Desired_Devices} {ID_Scope_Of_Your_Azure_DPS_Service}
 docker-composer up
 ```
 

@@ -60,7 +60,7 @@ EOL
         cd ../
         cat >> ./docker-compose.yml << EOL
   device-${idx}:
-    image: node:8.12.0-jessie
+    image: node:13.0-slim
     volumes:
       - ./src:/home/node/app
       - ./scripts/build/certs/devices/dev-${idx}.key.pem:/home/node/device-key-private.pem
